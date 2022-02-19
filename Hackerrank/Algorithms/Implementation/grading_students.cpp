@@ -12,8 +12,24 @@ string rtrim(const string &);
  * The function accepts INTEGER_ARRAY grades as parameter.
  */
 
-vector<int> gradingStudents(vector<int> grades) {
-
+vector<int> gradingStudents(vector<int> grades)
+{
+    int i;
+    vector<int> new_grades;
+    for (i = 0; i < grades.size(); i++)
+    {
+        int m = grades[i];
+        if (m > 38)
+        {
+            int n = (m / 5 + 1) * 5;
+            if (n - m < 3)
+            {
+                m = n;
+            }
+        }
+        new_grades.push_back(m);
+    }
+    return new_grades;
 }
 
 int main()
@@ -27,7 +43,8 @@ int main()
 
     vector<int> grades(grades_count);
 
-    for (int i = 0; i < grades_count; i++) {
+    for (int i = 0; i < grades_count; i++)
+    {
         string grades_item_temp;
         getline(cin, grades_item_temp);
 
@@ -38,10 +55,12 @@ int main()
 
     vector<int> result = gradingStudents(grades);
 
-    for (size_t i = 0; i < result.size(); i++) {
+    for (size_t i = 0; i < result.size(); i++)
+    {
         fout << result[i];
 
-        if (i != result.size() - 1) {
+        if (i != result.size() - 1)
+        {
             fout << "\n";
         }
     }
@@ -53,24 +72,24 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
