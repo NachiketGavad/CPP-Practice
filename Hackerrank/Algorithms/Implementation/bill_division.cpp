@@ -17,19 +17,20 @@ vector<string> split(const string &);
 
 void bonAppetit(vector<int> bill, int k, int b)
 {
-    int total = 0, i;
+    int actual = 0, i;
     for (i = 0; i < bill.size(); i++)
     {
-        total += bill[i];
+        actual += bill[i];
     }
-    total -= bill[k];
-    if (b == total)
+    actual -= bill[k];
+    actual /= 2;
+    if (b == actual)
     {
         cout << "Bon Appetit";
     }
     else
     {
-        cout << b - total;
+        cout << b - actual;
     }
 }
 
