@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-    int n, i, x, check_n, cmp;
+    int n, i, x, q, cmp;
     cin >> n;
     vector<int> v;
 
@@ -19,11 +19,12 @@ int main()
         v.push_back(x);
     }
 
-    cin >> check_n;
-    for (i = 0; i < check_n; i++)
+    cin >> q;
+    for (i = 0; i < q; i++)
     {
         cin >> x;
         vector<int>::iterator cmp = lower_bound(v.begin(), v.end(), x);
+        cout << cmp[i];
     }
 
     return 0;
