@@ -13,14 +13,27 @@ vector<string> split(const string &);
  * The function accepts 2D_INTEGER_ARRAY arr as parameter.
  */
 
-int diagonalDifference(vector<vector<int>> arr) {
-    int i,j,suml,sumr,difference;
-    for ( i = 0; i < count; i++)
+int diagonalDifference(vector<vector<int>> arr)
+{
+    int i, j, left_diag = 0, right_diag = 0, count = arr[i].size() - 1;
+    for (i = 0; i < arr.size(); i++)
     {
-        /* code */
+        for (j = 0; j < arr[i].size(); j++)
+        {
+            if (i == j)
+            {
+                left_diag += arr[i][j];
+            }
+        }
+        right_diag += arr[i][count];
+        count--;
     }
-    
-    return difference;
+    int diag_diff = left_diag - right_diag;
+    if (diag_diff < 0)
+    {
+        diag_diff = -diag_diff;
+    }
+    return diag_diff;
 }
 
 int main()
@@ -34,7 +47,8 @@ int main()
 
     vector<vector<int>> arr(n);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         arr[i].resize(n);
 
         string arr_row_temp_temp;
@@ -42,7 +56,8 @@ int main()
 
         vector<string> arr_row_temp = split(rtrim(arr_row_temp_temp));
 
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < n; j++)
+        {
             int arr_row_item = stoi(arr_row_temp[j]);
 
             arr[i][j] = arr_row_item;
@@ -58,35 +73,37 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
 
-vector<string> split(const string &str) {
+vector<string> split(const string &str)
+{
     vector<string> tokens;
 
     string::size_type start = 0;
     string::size_type end = 0;
 
-    while ((end = str.find(" ", start)) != string::npos) {
+    while ((end = str.find(" ", start)) != string::npos)
+    {
         tokens.push_back(str.substr(start, end - start));
 
         start = end + 1;
