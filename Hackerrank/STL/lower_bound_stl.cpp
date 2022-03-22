@@ -23,8 +23,15 @@ int main()
     for (i = 0; i < q; i++)
     {
         cin >> x;
-        vector<int>::iterator cmp = lower_bound(v.begin(), v.end(), x);
-        cout << cmp[i];
+        // vector<int>::iterator cmp = lower_bound(v.begin(), v.end(), x);
+        // cout << cmp[i];
+        for (int j = 0; j < v.size(); j++)
+        {
+            if (x == v[j])
+            {
+                cout << "YES " << j+1;
+            }
+        }
     }
 
     return 0;

@@ -3,16 +3,26 @@
 using namespace std;
 // Implement the class Box
 // l,b,h are integers representing the dimensions of the box
+
+// The class should have the following functions :
 class Box
 {
 private:
     int l, b, h;
 
 public:
-    Box(int l = 0, int b = 0, int h = 0)
+    Box()
     {
+        l = 0;
+        b = 0;
+        h = 0;
     }
-    // copyt constrctor
+    Box(int len, int bre, int hei)
+    {
+        l = len;
+        b = bre;
+        h = hei;
+    }
     Box(const Box &B)
     {
         l = B.l;
@@ -33,12 +43,10 @@ public:
     }
     long long CalculateVolume()
     {
-        long long v;
-        v = l * b * h;
-        return v;
+        long long volume;
+        volume = l * b * h;
+        return volume;
     }
-    // Overload operator < as specified
-    // bool operator<(Box& b)
     bool operator<(Box &B)
     {
         if (l < B.l)
@@ -47,11 +55,11 @@ public:
         }
         else if (l == B.l)
         {
-            if (b < B.l)
+            if (b < B.b)
             {
                 return true;
             }
-            else if (b == B.b && h < B.h)
+            else if (h < B.h && b == B.b)
             {
                 return true;
             }
@@ -59,15 +67,11 @@ public:
         return false;
     }
 };
-// Overload operator << as specified
-// ostream& operator<<(ostream& out, Box& B)
-ostream& operator<<(ostream& out, Box& B)
+ostream &operator<<(ostream &out, Box &B)
 {
     out << B.getLength() << " " << B.getBreadth() << " " << B.getHeight();
     return out;
-};
-// The class should have the following functions :
-
+}
 // Constructors:
 // Box();
 // Box(int,int,int);
@@ -77,6 +81,12 @@ ostream& operator<<(ostream& out, Box& B)
 // int getBreadth (); // Return box's breadth
 // int getHeight ();  //Return box's height
 // long long CalculateVolume(); // Return the volume of the box
+
+// Overload operator < as specified
+// bool operator<(Box& b)
+
+// Overload operator << as specified
+// ostream& operator<<(ostream& out, Box& B)
 
 void check2()
 {

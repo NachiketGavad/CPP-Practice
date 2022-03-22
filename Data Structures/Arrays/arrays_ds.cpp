@@ -7,59 +7,62 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'beautifulDays' function below.
+ * Complete the 'reverseArray' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER i
- *  2. INTEGER j
- *  3. INTEGER k
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts INTEGER_ARRAY a as parameter.
  */
-int reverse_num(int n)
+
+vector<int> reverseArray(vector<int> a)
 {
-    int rev=0, last_digit;
-    while (n> 0)
+    int i, temp, j;
+    for (i = 0; i < a.size() / 2; i++)
     {
-        last_digit = n % 10;
-        rev = (rev * 10) + last_digit;
-        n = n / 10;
+        j = a.size() - i - 1;
+        temp = a[j];
+        a[j] = a[i];
+        a[i] = temp;
     }
 
-    return rev;
-}
-
-int beautifulDays(int i, int j, int k)
-{
-    int count = 0;
-    for (; i <= j; i++)
-    {
-        double val = (i - reverse_num(i)) % k;
-        if (val == 0)
-        {
-            count += 1;
-        }
-    }
-    return count;
+    return a;
 }
 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    string arr_count_temp;
+    getline(cin, arr_count_temp);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    int arr_count = stoi(ltrim(rtrim(arr_count_temp)));
 
-    int i = stoi(first_multiple_input[0]);
+    string arr_temp_temp;
+    getline(cin, arr_temp_temp);
 
-    int j = stoi(first_multiple_input[1]);
+    vector<string> arr_temp = split(rtrim(arr_temp_temp));
 
-    int k = stoi(first_multiple_input[2]);
+    vector<int> arr(arr_count);
 
-    int result = beautifulDays(i, j, k);
+    for (int i = 0; i < arr_count; i++)
+    {
+        int arr_item = stoi(arr_temp[i]);
 
-    fout << result << "\n";
+        arr[i] = arr_item;
+    }
+
+    vector<int> res = reverseArray(arr);
+
+    for (size_t i = 0; i < res.size(); i++)
+    {
+        fout << res[i];
+
+        if (i != res.size() - 1)
+        {
+            fout << " ";
+        }
+    }
+
+    fout << "\n";
 
     fout.close();
 

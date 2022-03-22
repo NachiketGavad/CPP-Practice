@@ -7,57 +7,58 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'beautifulDays' function below.
+ * Complete the 'sockMerchant' function below.
  *
  * The function is expected to return an INTEGER.
  * The function accepts following parameters:
- *  1. INTEGER i
- *  2. INTEGER j
- *  3. INTEGER k
+ *  1. INTEGER n
+ *  2. INTEGER_ARRAY ar
  */
-int reverse_num(int n)
-{
-    int rev=0, last_digit;
-    while (n> 0)
-    {
-        last_digit = n % 10;
-        rev = (rev * 10) + last_digit;
-        n = n / 10;
-    }
 
-    return rev;
-}
-
-int beautifulDays(int i, int j, int k)
+int sockMerchant(int n, vector<int> ar)
 {
-    int count = 0;
-    for (; i <= j; i++)
+    int pairs = 0, i, new_pairs, count;
+    for (i = 0; i < n - 1; i++)
     {
-        double val = (i - reverse_num(i)) % k;
-        if (val == 0)
+        new_pairs = 0, count = 0;
+        for (int j = i + 1; j < n; j++)
         {
-            count += 1;
+            if (ar[i] != 0 && ar[i] == ar[j])
+            {
+                count++;
+                ar[j] = 0;
+            }
         }
+        new_pairs = count / 2;
+        pairs = pairs + new_pairs;
     }
-    return count;
+    return pairs;
 }
 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    string n_temp;
+    getline(cin, n_temp);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    int n = stoi(ltrim(rtrim(n_temp)));
 
-    int i = stoi(first_multiple_input[0]);
+    string ar_temp_temp;
+    getline(cin, ar_temp_temp);
 
-    int j = stoi(first_multiple_input[1]);
+    vector<string> ar_temp = split(rtrim(ar_temp_temp));
 
-    int k = stoi(first_multiple_input[2]);
+    vector<int> ar(n);
 
-    int result = beautifulDays(i, j, k);
+    for (int i = 0; i < n; i++)
+    {
+        int ar_item = stoi(ar_temp[i]);
+
+        ar[i] = ar_item;
+    }
+
+    int result = sockMerchant(n, ar);
 
     fout << result << "\n";
 
