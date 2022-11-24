@@ -9,6 +9,7 @@ int factorial(int n){
         return 1;
     }
 
+    // fact(n) = n*fact(n-1)
     int prev_fact=factorial(n-1),fact;
     fact=n*prev_fact;
     return fact;

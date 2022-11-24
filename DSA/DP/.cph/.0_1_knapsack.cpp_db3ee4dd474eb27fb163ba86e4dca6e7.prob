@@ -1,0 +1,1 @@
+{"name":"Local: 0_1_knapsack","url":"c:\\Users\\nachi\\Workspace\\C++ Tutorial\\DSA\\DP\\0_1_knapsack.cpp","tests":[{"id":1659854073955,"input":"5 10 \n2 5 \n3 10 \n5 9 \n6 7 \n4 2","output":"24"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\nachi\\Workspace\\C++ Tutorial\\DSA\\DP\\0_1_knapsack.cpp","group":"local","local":true}
