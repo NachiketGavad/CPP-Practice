@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.rpy": "renpy",
-        "vector": "cpp"
+        "vector": "cpp",
+        "*.tcc": "cpp",
+        "list": "cpp"
     }
 }
